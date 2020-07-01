@@ -44,7 +44,11 @@ void Query_name_Fuzzy(char key[])
 
 void showone(struct Signal *p)
 {
-	printf("%s\t%1d\t%.2f\t%1d\n",p->Name,p->KB,p->Pos,p->Type); //输出可能满足条件的信号机之一
+	if(p!=NULL)
+	{
+		printf("%s\t%1d\t%.2f\t%1d\n",p->Name,p->KB,p->Pos,p->Type); //输出可能满足条件的信号机之一
+
+	}
 }
 
 void showall()

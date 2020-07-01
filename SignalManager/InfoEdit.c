@@ -1,20 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "RSignal.h"
-#include "InfoQuery.h"
 
 extern int amount;
 extern struct Signal *Head;
 
-void InputInfo(struct Signal *);
+void InputElement(struct Signal *,int);
 
 void insert(struct Signal *p_front, struct Signal *p_next)
 {
 	struct Signal *p1;
-	char flag;
+	char flag; //记录是否继续添加信号机
 
 	p1=(struct Signal *)malloc(sizeof(struct Signal));
-	InputInfo(p1); //输入信号机信息
+	InputElement(p1,5); //输入信号机信息
 
 	p1->front=p_front; //建立新一项的前驱指针
 	p1->next=p_next; //建立新一项的后继指针
@@ -32,12 +31,7 @@ void insert(struct Signal *p_front, struct Signal *p_next)
 	}
 	amount++; //信号机计数器
 
-	while(!(flag=='Y'||flag=='N'))
-	{
-		printf("是否要在%s后继续添加信号机？(Y/N)",p1->Name);
-		flag=getchar();
-		while(getchar()!='\n');
-	}
+	flag=InputYN("是否要在其后继续添加信号机？");
 	if(flag=='Y')
 	{
 		insert(p1,p_next);
@@ -50,18 +44,20 @@ void removeone(struct Signal *p)
 	{
 		return;
 	}
+
 	if(p->next!=NULL)
 	{
 		p->next->front=p->front;
-	}
+	} //p不是尾指针时 修改后一项的前驱指针
+
 	if(p->front!=NULL)
 	{
 		p->front->next=p->next;
-	}
+	} //p不是头指针时 修改前一项的后继指针
 	else
 	{
 		Head=p->next;
-	}
+	} //p是头指针 则将后一项定为新的头指针
 	amount--;
 	free(p);
 }

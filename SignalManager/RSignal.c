@@ -12,7 +12,7 @@ void create()
 	char flag; //用于判断是否继续添加信号机
 	p1=p2=(struct Signal *)malloc(sizeof(struct Signal));
 
-	InputInfo(p1); //输入信号机信息
+	InputElement(p1,5); //输入信号机信息
 	
 	Head=p1; //指定链表的头指针
 	Head->front=NULL; //置空第一项的前驱指针
@@ -26,7 +26,7 @@ void create()
 		p2=p1;
 		
 		p1=(struct Signal *)malloc(sizeof(struct Signal));
-		InputInfo(p1); //输入信号机信息
+		InputElement(p1,5); //输入信号机信息
 
 		p1->front=p2; //建立新一项的前驱指针
 		p2->next=p1; //修改前一项的后继指针
@@ -40,7 +40,7 @@ void create()
 void load()
 {
 	FILE *fp=NULL;
-	fpos_t position;
+	fpos_t position; //用于记录目前在文件中的位置
 	struct Signal *p1,*p2;
 
 	fp=fopen("SignalData.txt","r");

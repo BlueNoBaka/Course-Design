@@ -10,7 +10,7 @@
 		struct Signal *next,*front; //后一架信号机指针，前一架信号机指针
 	};
 
-	void create();
-	void load();
+	void create(); //创建链表 人工录入信号机信息
+	void load(); //创建链表 从文件导入信号机信息
 
 #endif
