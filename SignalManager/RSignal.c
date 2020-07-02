@@ -43,7 +43,7 @@ void load()
 	fpos_t position; //用于记录目前在文件中的位置
 	struct Signal *p1,*p2;
 
-	fp=fopen("SignalData.txt","r");
+	fp=fopen("Signal.txt","r");
 	if(fp==NULL)
 	{
 		printf("文件不存在！\n");
@@ -80,6 +80,24 @@ void load()
 		p2->next=p1; //修改前一项的后继指针
 		p1->next=NULL; //置空新一项的后继指针
 		amount++;
+	}
+	fclose(fp);
+}
+
+void save()
+{
+	FILE *fp=NULL;
+	struct Signal *p;
+	
+	fp=fopen("Signal.txt","w");
+	p=Head;
+	if (Head!=NULL) //存在信号机时
+	{
+		do
+		{
+			fprintf(fp,"%s\t%1d\t%.2f\t%1d\n",p->Name,p->KB,p->Pos,p->Type); //输出每架信号机的信息
+			p=p->next;
+		} while (p!=NULL);
 	}
 	fclose(fp);
 }

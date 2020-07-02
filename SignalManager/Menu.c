@@ -52,10 +52,6 @@ void MainMenu()
 			option=InputYN("保存后将自动退出程序，你确定要继续吗？");
 			if(option=='Y')
 			{
-				save();
-				removeall();
-				printf("信号机数据已保存至\"SignalData.txt\"，即将退出程序\n");
-				system("pause");
 				flag=0;
 			}
 			break;

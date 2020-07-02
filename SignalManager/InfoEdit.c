@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "RSignal.h"
+#include "GetInput.h"
 
 extern int amount;
 extern struct Signal *Head;
-
-void InputElement(struct Signal *,int);
 
 void insert(struct Signal *p_front, struct Signal *p_next)
 {
@@ -72,22 +71,4 @@ void removeall()
 		amount--;
 		Head=p;
 	}
-}
-
-void save()
-{
-	FILE *fp=NULL;
-	struct Signal *p;
-	
-	fp=fopen("SignalData.txt","w");
-	p=Head;
-	if (Head!=NULL) //存在信号机时
-	{
-		do
-		{
-			fprintf(fp,"%s\t%1d\t%.2f\t%1d\n",p->Name,p->KB,p->Pos,p->Type); //输出每架信号机的信息
-			p=p->next;
-		} while (p!=NULL);
-	}
-	fclose(fp);
 }

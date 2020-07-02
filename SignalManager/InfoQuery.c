@@ -47,7 +47,6 @@ void showone(struct Signal *p)
 	if(p!=NULL)
 	{
 		printf("%s\t%1d\t%.2f\t%1d\n",p->Name,p->KB,p->Pos,p->Type); //输出可能满足条件的信号机之一
-
 	}
 }
 
